@@ -1,14 +1,105 @@
+/* * {
+    
+} */
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0;
+    margin: 0;
+
+    max-width: 100%;
+    overflow: hidden;
+
+
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    color: white;
 }
 
 .countdown-container {
     text-align: center;
-    margin-top: 100px;
 }
 
-#countdown {
-    font-size: 36px;
+h1 {
+    font-weight: 300;
+    font-size: 2rem;
+    padding-inline: 0.5em;
+}
+
+p {
+    font-size: 2rem;
     font-weight: bold;
+}
+
+.waves-container {
+    /* margin-top: auto; */
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    margin-bottom: -6px;
+    /*Fix for safari gap*/
+    min-height: 150px;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+/* Animation */
+.parallax>use {
+    animation: move-forever 1s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+
+.parallax>use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+
+.parallax>use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+
+.parallax>use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+    .waves {
+        max-width: 100%;
+        overflow: hidden;
+
+    }
+
+
 }
