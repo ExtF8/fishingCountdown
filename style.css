@@ -15,7 +15,7 @@ body {
 
 .main-container {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     text-align: center;
     flex-direction: column;
@@ -26,22 +26,24 @@ body {
 }
 
 .countdown-container {
+    margin-top: 20vh;
     text-align: center;
 }
 
 h1 {
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 4rem;
     padding-inline: 0.5em;
 }
 
 p {
-    font-size: 2rem;
+    font-size: 3.5rem;
     font-weight: bold;
+    width: max-content;
+    margin-inline: auto;
 }
 
 .waves-container {
-    /* margin-top: auto; */
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -98,8 +100,13 @@ p {
     .waves {
         max-width: 100%;
         overflow: hidden;
-
     }
 
+    h1 {
+        font-size: 2rem;
+    }
 
+    p {
+        font-size: 1.8rem;
+    }
 }
