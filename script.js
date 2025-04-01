@@ -1,8 +1,18 @@
 // Variable to store the interval
 let intervalId;
 
-// Variable to store the counter value
-let clickCount = 0;
+// Initialize clickCount from localStorage
+let clickCount = getFromLocalStorage();
+
+// Save to localStorage
+function saveToLocalStorage(points) {
+    localStorage.setItem('score', points);
+}
+
+// Retrieve from localStorage (parse to integer)
+function getFromLocalStorage() {
+    return parseInt(localStorage.getItem('score')) || 0;
+}
 
 // Function to calculate remaining time until May 1st
 function countdown() {
@@ -36,14 +46,21 @@ function countdown() {
     }
 }
 
+
 // To update the countdown timer
 function updateCountdown({ time }) {
     const countdownElement = document.getElementById('countdown');
     const season = document.getElementById('season');
     const paragraph = document.getElementById('time');
+    const finalScore = document.getElementById('finalScore');
+    const pointContainer = document.getElementById('points-container');
+
     const message = `${time.days}d ${time.hours}h ${time.minutes}m ${time.seconds}s`;
     const messageForSeason = '🎆 Sezona atklāta! 🎆';
     const messageForCountdown = 'Tight lines and bent rods, baby!';
+
+    let clickCount = getFromLocalStorage();
+    const finalScoreMessage = `Gaidot atklāšanu tu noķēri ${clickCount} zivis!`
 
     // Remove existing elements
     countdownElement.innerHTML = '';
@@ -51,6 +68,10 @@ function updateCountdown({ time }) {
     if (time.difference <= 0) {
         season.innerText = messageForSeason;
         paragraph.innerText = messageForCountdown;
+        finalScore.innerText = finalScoreMessage;
+        countdownElement.append(finalScore);
+        pointContainer.remove();
+
     } else {
         paragraph.innerText = message;
     }
@@ -59,13 +80,14 @@ function updateCountdown({ time }) {
 
 function handleFishClick() {
     clickCount++;
+    saveToLocalStorage(clickCount);
     updateCounterUI();
 }
 
+// Function to update the counter UI
 function updateCounterUI() {
     const counterElement = document.getElementById('counter');
     counterElement.innerText = `${clickCount}`;
-    console.log('fish');
 }
 
 function peixos() {
@@ -220,17 +242,11 @@ function peixos() {
     temporitzadorPeix();
 
 }
+
 window.addEventListener('DOMContentLoaded', function () {
     // Call the countdown function every second
     intervalId = setInterval(countdown, 1000);
     peixos();
     updateCounterUI();
 });
-timeoutResize = setTimeout(';', 1);
-window.onresize = function () {
-    clearTimeout(timeoutResize);
 
-    timeoutResize = setTimeout(function () {
-        location.reload();
-    }, 250);
-};
